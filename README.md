@@ -1,6 +1,6 @@
 # Feasibility and Performance Analysis of Scaled-YOLOv4 Object Detection on Graphcore IPU
 
-This repository contains the source code and data.
+This repository contains the source code and data, [based on Graphcore's YOLOv4 implementation](https://github.com/graphcore/examples/tree/master/vision/yolo_v4/pytorch).
 The project presents a comprehensive performance benchmark of the Scaled-YOLOv4-P5 object detection model on a Graphcore GC200 IPU against a comparable NVIDIA A30 GPU. It investigates performance trade-offs by analyzing inference latency and throughput while varying image size, batch size, and floating-point precision.
 
 ## Repository Structure
