@@ -1,0 +1,67 @@
+\begin{table}
+  \centering
+  \begingroup
+  \setlength{\tabcolsep}{12pt}
+  \renewcommand{\arraystretch}{1.15}
+  \caption{Throughput and Latency vs. Image Size (Batch Size = 1)}
+  \label{tab:perf_vs_img_size}
+  \begin{tabular*}{0.95\textwidth}{@{\extracolsep{\fill}}llrrrr}
+    \toprule
+    \multirow{2}{*}{Image Size} & \multirow{2}{*}{Precision} & \multicolumn{2}{c}{Throughput (FPS)} & \multicolumn{2}{c}{Latency (ms)} \\
+    & & IPU & GPU & IPU & GPU \\
+    \midrule
+    \multirow{2}{*}{128} & FP16 &           483.63 & 42.84 &         1.04 & 25.64 \\
+    & FP32 &           386.72 & 42.84 &         1.49 & 25.40 \\
+    \cline{1-6}
+    \multirow{2}{*}{224} & FP16 &           403.31 & 42.81 &         1.38 & 25.69 \\
+    & FP32 &           240.42 & 42.92 &         2.43 & 25.40 \\
+    \cline{1-6}
+    \multirow{2}{*}{320} & FP16 &           328.24 & 44.50 &         1.85 & 24.59 \\
+    & FP32 &           123.39 & 45.27 &         3.84 & 23.71 \\
+    \cline{1-6}
+    \multirow{2}{*}{512} & FP16 &           220.46 & 43.78 &         3.18 & 24.96 \\
+    & FP32 &            90.47 & 44.72 &         7.03 & 26.04 \\
+    \cline{1-6}
+    \multirow{2}{*}{800} & FP16 &           133.73 & 43.49 &         5.72 & 25.03 \\
+    & FP32 &                - & 35.61 &            - & 29.57 \\
+    \cline{1-6}
+    \multirow{2}{*}{1024} & FP16 &            93.97 & 36.48 &         8.16 & 29.62 \\
+    & FP32 &                - & 24.08 &            - & 45.14 \\
+    \bottomrule
+  \end{tabular*}
+  \endgroup
+\end{table}
+
+\begin{table}
+  \centering
+  \begingroup
+  \setlength{\tabcolsep}{12pt}
+  \renewcommand{\arraystretch}{1.15}
+  \caption{Throughput and Latency vs. Batch Size (Image Size = 320 px)}
+  \label{tab:perf_vs_batch_size}
+  \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}}llrrrr}
+    \toprule
+    \multirow{2}{*}{Batch Size} & \multirow{2}{*}{Precision} & \multicolumn{2}{c}{Throughput (FPS)} & \multicolumn{2}{c}{Latency (ms)} \\
+    & & IPU & GPU & IPU & GPU \\
+    \midrule
+    \multirow{2}{*}{1} & FP16 &            98.75 &  44.31 &         2.36 &  24.36 \\
+    & FP32 &            75.59 &  45.29 &         4.56 &  23.79 \\
+    \cline{1-6}
+    \multirow{2}{*}{2} & FP16 &           181.96 &  86.32 &         5.76 &  24.92 \\
+    & FP32 &           209.60 &  87.54 &         5.95 &  24.74 \\
+    \cline{1-6}
+    \multirow{2}{*}{4} & FP16 &           232.38 & 168.84 &         6.08 &  25.83 \\
+    & FP32 &                - & 176.38 &            - &  24.42 \\
+    \cline{1-6}
+    \multirow{2}{*}{8} & FP16 &           365.54 & 324.84 &         8.85 &  26.77 \\
+    & FP32 &                - & 235.28 &            - &  36.16 \\
+    \cline{1-6}
+    \multirow{2}{*}{16} & FP16 &                - & 397.05 &            - &  45.38 \\
+    & FP32 &                - & 254.64 &            - &  64.54 \\
+    \cline{1-6}
+    \multirow{2}{*}{32} & FP16 &                - & 426.17 &            - &  75.05 \\
+    & FP32 &                - & 257.60 &            - & 124.24 \\
+    \bottomrule
+  \end{tabular*}
+  \endgroup
+\end{table}

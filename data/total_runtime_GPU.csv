@@ -1,0 +1,53 @@
+Setting up GPU environment...
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+Setup complete.
+==========================================================================================
+   Starting Inference Timing Sweep
+   Precision: half
+   Batch Size: 1
+==========================================================================================
+>>> Timing for image size: 128x128
+False,1,1,128,half,25.029,42.774,21.811,204.111,18.006,4.898,45.766,4.523
+  - Total time: 14.168035251 seconds.
+>>> Timing for image size: 224x224
+False,1,1,224,half,25.584,42.771,21.035,243.796,22.039,4.101,47.453,5.428
+  - Total time: 12.314700382 seconds.
+>>> Timing for image size: 320x320
+False,1,1,320,half,24.290,44.251,20.866,178.515,15.890,5.600,47.839,5.931
+  - Total time: 12.254347726 seconds.
+>>> Timing for image size: 416x416
+False,1,1,416,half,25.483,42.763,21.266,241.829,21.794,4.134,46.940,4.905
+  - Total time: 13.021141970 seconds.
+>>> Timing for image size: 512x512
+False,1,1,512,half,25.001,43.820,20.981,231.768,21.073,4.314,47.580,5.581
+  - Total time: 14.062062473 seconds.
+>>> Timing for image size: 640x640
+False,1,1,640,half,24.567,44.336,20.804,204.620,18.636,4.886,47.983,5.847
+  - Total time: 15.576132267 seconds.
+>>> Timing for image size: 896x896
+False,1,1,896,half,24.873,44.053,21.329,221.974,20.258,4.504,46.804,5.849
+  - Total time: 15.562014454 seconds.
+>>> Timing for image size: 1024x1024
+False,1,1,1024,half,29.160,36.839,26.314,225.561,20.072,4.432,37.951,4.398
+  - Total time: 18.675008699 seconds.
+
+All timing tests completed.
+Final results are in logs/gpu_timing_results.log
+
+Inference Wall-Clock Time Results (in seconds)
+Precision: half, Batch Size: 1
+------------------------------------------------
+Image Size | Time (s)
+-----------|----------
+128x128    | 14.168035251
+224x224    | 12.314700382
+320x320    | 12.254347726
+416x416    | 13.021141970
+512x512    | 14.062062473
+640x640    | 15.576132267
+896x896    | 15.562014454
+1024x1024  | 18.675008699

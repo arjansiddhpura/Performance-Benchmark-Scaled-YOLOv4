@@ -1,0 +1,8 @@
+ImageSize MaxIPUBatchSize_fp16 MaxGPUBatchSize_fp16 MaxIPUBatchSize_fp32 MaxGPUBatchSize_fp32
+128 64 64 16 64
+224 16 64 4 64
+320 8 64 2 64
+416 4 64 2 64
+512 4 64 1 64
+640 2 64 0 64
+896 1 64 0 32

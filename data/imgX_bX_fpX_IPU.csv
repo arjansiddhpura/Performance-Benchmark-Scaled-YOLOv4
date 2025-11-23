@@ -1,0 +1,153 @@
+Setting up environment...
+ERROR: A Poplar SDK has already been enabled.
+Path of enabled Poplar SDK: /local/poplar_sdk/poplar-ubuntu_20_04-3.4.0+73-aa67dd6164
+If this is not wanted then please start a new shell.
+Setup complete.
+------------------------------------------------------------------------------------------
+   Starting Automatic Batch Size Sweep (Precision: half)   
+------------------------------------------------------------------------------------------
+>>> Testing Image Size: 224x224
+  - Trying Batch Size: 1...
+True,10,1,224,half,2.654,638.601,2.100,6.000,0.797,260.294,736.994,137.081
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,224,half,3.214,905.997,2.700,7.400,0.710,372.073,1135.729,136.487
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+True,10,4,224,half,4.855,1313.025,4.000,8.000,1.099,773.382,1637.217,236.013
+  - SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+True,10,8,224,half,8.875,1531.069,6.000,15.900,2.570,897.249,1949.909,295.225
+  - SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+True,10,16,224,half,11.571,2188.580,10.400,20.700,2.092,1375.920,2609.017,262.425
+  - SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+  - FAILURE detected at Batch Size: 32. Stopping tests for this image size.
+RESULT for 224x224: Max successful batch size = 16
+-----------------------------------------------------------------
+>>> Testing Image Size: 320x320
+  - Trying Batch Size: 1...
+True,10,1,320,half,3.667,408.034,2.800,8.100,1.107,213.870,564.122,87.500
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,320,half,4.701,674.860,3.800,8.100,1.285,352.383,829.816,118.333
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+True,10,4,320,half,8.096,783.791,6.100,14.600,2.057,472.735,983.459,136.280
+  - SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+True,10,8,320,half,12.631,976.069,10.300,20.200,2.358,659.654,1178.817,125.161
+  - SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+  - FAILURE detected at Batch Size: 16. Stopping tests for this image size.
+RESULT for 320x320: Max successful batch size = 8
+-----------------------------------------------------------------
+>>> Testing Image Size: 416x416
+  - Trying Batch Size: 1...
+True,10,1,416,half,4.441,333.700,2.900,8.700,1.216,211.300,449.603,48.462
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,416,half,5.900,507.508,4.800,9.800,0.927,287.114,598.712,54.567
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+True,10,4,416,half,13.755,429.021,8.800,25.100,5.482,255.462,559.023,98.449
+  - SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+  - FAILURE detected at Batch Size: 8. Stopping tests for this image size.
+RESULT for 416x416: Max successful batch size = 4
+-----------------------------------------------------------------
+>>> Testing Image Size: 512x512
+  - Trying Batch Size: 1...
+True,10,1,512,half,4.713,267.086,4.300,8.200,0.526,175.921,309.055,23.322
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,512,half,10.985,262.491,6.900,22.100,4.472,137.141,353.464,58.882
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+True,10,4,512,half,12.900,456.723,11.700,22.300,2.129,329.356,504.923,40.181
+  - SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+  - FAILURE detected at Batch Size: 8. Stopping tests for this image size.
+RESULT for 512x512: Max successful batch size = 4
+-----------------------------------------------------------------
+>>> Testing Image Size: 640x640
+  - Trying Batch Size: 1...
+True,10,1,640,half,7.331,212.520,6.000,11.600,1.592,109.322,272.020,32.008
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,640,half,11.305,274.549,9.700,15.200,1.729,214.890,312.167,25.727
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+  - FAILURE detected at Batch Size: 4. Stopping tests for this image size.
+RESULT for 640x640: Max successful batch size = 2
+-----------------------------------------------------------------
+>>> Testing Image Size: 896x896
+  - Trying Batch Size: 1...
+True,10,1,896,half,11.645,124.460,9.400,17.600,1.994,85.796,147.102,14.874
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+  - FAILURE detected at Batch Size: 2. Stopping tests for this image size.
+RESULT for 896x896: Max successful batch size = 1
+-----------------------------------------------------------------
+All tests completed. Final results are in results.log
+
+
+------------------------------------------------------------------------------------------
+   Starting Automatic Batch Size Sweep (Precision: single)   
+------------------------------------------------------------------------------------------
+>>> Testing Image Size: 224x224
+  - Trying Batch Size: 1...
+True,10,1,224,single,4.542,322.831,3.900,9.100,1.252,170.064,429.120,67.187
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,224,single,6.065,506.428,5.600,10.200,0.842,314.693,575.327,46.717
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+True,10,4,224,single,9.463,630.718,8.500,12.700,1.057,484.647,775.130,83.508
+  - SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+  - FAILURE detected at Batch Size: 8. Stopping tests for this image size.
+RESULT for 224x224: Max successful batch size = 4
+-----------------------------------------------------------------
+>>> Testing Image Size: 320x320
+  - Trying Batch Size: 1...
+True,10,1,320,single,6.668,234.449,5.800,12.100,1.226,135.441,290.879,31.848
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,320,single,9.581,356.521,8.700,13.100,0.877,256.310,384.963,30.894
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+  - FAILURE detected at Batch Size: 4. Stopping tests for this image size.
+RESULT for 320x320: Max successful batch size = 2
+-----------------------------------------------------------------
+>>> Testing Image Size: 416x416
+  - Trying Batch Size: 1...
+True,10,1,416,single,8.313,193.280,8.000,11.500,0.399,143.051,201.029,7.447
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+True,10,2,416,single,13.816,240.575,12.600,18.100,1.022,196.087,264.613,13.583
+  - SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+  - FAILURE detected at Batch Size: 4. Stopping tests for this image size.
+RESULT for 416x416: Max successful batch size = 2
+-----------------------------------------------------------------
+>>> Testing Image Size: 512x512
+  - Trying Batch Size: 1...
+True,10,1,512,single,12.629,135.562,10.300,19.600,2.143,68.809,163.246,19.228
+  - SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+  - FAILURE detected at Batch Size: 2. Stopping tests for this image size.
+RESULT for 512x512: Max successful batch size = 1
+-----------------------------------------------------------------
+>>> Testing Image Size: 640x640
+  - Trying Batch Size: 1...
+  - FAILURE detected at Batch Size: 1. Stopping tests for this image size.
+RESULT for 640x640: Max successful batch size = 0
+-----------------------------------------------------------------
+>>> Testing Image Size: 896x896
+  - Trying Batch Size: 1...
+  - FAILURE detected at Batch Size: 1. Stopping tests for this image size.
+RESULT for 896x896: Max successful batch size = 0
+-----------------------------------------------------------------
+All tests completed. Final results are in results.log

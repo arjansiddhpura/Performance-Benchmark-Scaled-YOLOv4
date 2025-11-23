@@ -1,0 +1,205 @@
+% This is a sample LaTeX file for DASIP 2026 conference paper
+% Based on Springer LNCS format
+
+\documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{hyperref}   % hyperref is loaded (as suggested by template)
+\usepackage[per-mode = symbol]{siunitx}    % For \SI{...} commands
+\usepackage{booktabs}   % For \toprule, \midrule, \bottomrule in tables
+\usepackage{tikz}       % For drawing plots
+\usepackage{pgfplots}   % For drawing plots
+\usepackage{xurl}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{todonotes}
+\usepackage{menukeys}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X} % Creates a centered, wrapping column type
+\pgfplotsset{compat=1.18} % Sets a compatibility mode for pgfplots
+\DeclareSIUnit\flop{FLOP}
+
+\begin{document}
+
+\title{Comparative Benchmark of Scaled-YOLOv4 \linebreak on Graphcore IPU and NVIDIA GPU}
+\titlerunning{Comparative Benchmark of Scaled-YOLOv4}
+
+\author{Arjan Siddhpura\inst{1},
+  S.-Kazem Shekofteh\inst{1},
+Holger Fröning\inst{1}}
+
+\institute{Hardware and Artificial Intelligence (HAWAII) Lab, Heidelberg University\\
+\email{arjan.siddhpura@stud.uni-heidelberg.de, \{kazem.shekofteh, holger.froening\}@ziti.uni-heidelberg.de   }}
+
+\maketitle
+
+\begin{abstract}
+  The performance of deep learning models is heavily coupled to hardware, with SIMT-based GPUs being the de facto standard. Novel architectures like the Graphcore Intelligent Processing Unit (IPU), with its Multiple Instruction, Multiple Data (MIMD) design and distributed on-chip SRAM, offer a different paradigm. However, direct performance comparisons for complex, state-of-the-art computer vision models are sparse. This paper presents a comprehensive performance benchmark of the Scaled-YOLOv4-P5 object detection model on a Graphcore GC200 IPU against a comparable NVIDIA A30 GPU. We investigate the performance trade-offs by analyzing inference latency and throughput while varying image size, batch size, and floating-point precision. Our findings reveal a stark performance trade-off. The IPU excels in low-latency scenarios, delivering a 6.56 ms inference time at batch=1 (896 px), nearly 4x faster than the GPU's 26.17 ms. Conversely, the GPU's SIMT architecture scales near-linearly for high-throughput, while the IPU is severely memory-constrained. The IPU failed to compile at batch=2 for the native 896px resolution, limited by its $\sim$900 MB on-chip SRAM. In contrast, the GPU's 24 GiB HBM2 memory handled batches of $\geq$64 at the same resolution. Furthermore, the IPU's Ahead-of-Time compilation incurs a major overhead: a full benchmark run at 896 px took 382.79 s on the IPU versus just 15.56 s on the GPU, with 75-88\% of the IPU's time spent on compilation alone.
+
+  \keywords{Object Detection \and Graphcore IPU \and YOLOv4 \and Performance Benchmarking \and Hardware Accelerators}
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+% Stage 1: BACKGROUND (general statements)
+The performance of deep learning is mutually tied to the evolution of specialized hardware, a dependence famously described as the "Hardware Lottery" \cite{hooker2020hardwarelottery}. For years, this field has been dominated by Graphics Processing Units (GPUs), whose Single Instruction, Multiple Threads (SIMT) architectures are exceptionally efficient at processing the dense matrix multiplications that form the backbone of modern computer vision models. This SIMT design thrives on massive data parallelism, which is achieved by processing large batches of data simultaneously. However, this is a disadvantage for applications like real-time object detection, which demand the lowest possible latency on a single input, i.e., a batch size of 1. This mismatch has spurred the development of novel AI accelerators built on different paradigms. One such alternative is the Graphcore Intelligent Processing Unit (IPU), a massively parallel processor built on a Multiple Instruction, Multiple Data (MIMD) design with $\sim$900 MB of distributed on-chip SRAM. This architecture is ideal for workloads with fine-grained, irregular parallelism and is designed to deliver low latency by co-locating memory and compute.
+
+% Stage 2 & 3: LITERATURE REVIEW and THE NEED (The Gap)
+This architectural dichotomy however lacks a direct comparison for state-of-the-art (SOTA) vision models. While vendor-published benchmarks for the IPU claim significant inference speedups - including a 2.2x latency and 4.7x throughput improvement on Resnet-50 \cite{he2015deepresiduallearningimage}, a 15x latency and 14x throughput improvement on EfficientNet-B0 \cite{tan2020efficientnetrethinkingmodelscaling} and a 24x latency and 7x throughput on ResNeXt-101 \cite{xie2017aggregatedresidualtransformationsdeep}, these claims \cite{Graphcore2020Benchmarks} require independent validation and a thorough comparison. Other studies compare hardware from different generations (e.g., first-generation IPU MK1 (GC2) vs. NVIDIA V100) \cite{arcelin2021comparisongraphcoreipusnvidia}, different power envelopes, or different target workloads. These studies often focus on tasks such as matrix multiplication \cite{shekofteh2023performanceanalysisgraphcoreipus, jia2019dissectinggraphcoreipuarchitecture}, or vision tasks like text detection \cite{10.1145/3491204.3527469} and cosmology image generation \cite{arcelin2021comparisongraphcoreipusnvidia}. What is missing is an empirical benchmark that compares the current-generation, power-comparable data center accelerators, specifically the 150W Graphcore GC200 IPU and the 165W NVIDIA A30 GPU, on a large and complex object detection model like the 70.8-million-parameter Scaled-YOLOv4-P5 \cite{wang2021scaledyolov4scalingcrossstage}.
+
+% Stage 4: OBJECTIVE OF THE PRESENT WORK (and Contributions)
+The objective of this work is to fill this specific gap. We present a rigorous, quantitative performance benchmark of the Scaled-YOLOv4-P5 model on a Graphcore GC200 IPU versus a power-comparable NVIDIA A30 GPU. We analyze the architectural trade-offs by measuring end-to-end inference latency and throughput while varying input image size, batch size, and floating-point precision.
+
+Our primary contributions are:
+\begin{enumerate}
+  \item Confirming the feasibility along with a benchmark of the $\sim$70.8M-parameter Scaled-YOLOv4-P5 model on a GC200 IPU and an A30 GPU, which quantifies the IPU's significant low-latency advantage in real-time scenarios: at a batch size of 1 (896px, FP16), the IPU delivers a 6.56 ms inference time, a nearly 4x speedup over the A30 GPU's 26.17 ms.
+  \item Identification of the IPU's critical performance bottlenecks: the $\sim$900 MB on-chip SRAM memory wall which causes compilation to fail at a batch size of 2 (896px), and the 24x time-to-result overhead (382.79 s vs. 15.56 s) incurred by its Ahead-of-Time (AOT) compilation model.
+\end{enumerate}
+
+% Stage 5: JUSTIFICATION OR IMPORTANCE
+This work provides empirical data for system designers, demonstrating the fundamental performance trade-off between the MIMD/SRAM (specialization) and SIMT/HBM (generalization) architectural designs. We show how the IPU's low-latency advantage is a direct result of its specialized MIMD/SRAM design, which successfully maps the model into on-chip memory at batch=1. However, this specialization also creates an inflection point: the $\sim$900 MB on-chip "memory wall" is now insufficient for SOTA models, causing a hard compilation failure at batch=2. This work thus quantifies the practical trade-off: the IPU's 4x low-latency (batch=1) win is counter-balanced by its inflexibility and a severe 24x time-to-result compilation overhead, a practical cost of its AOT model.
+
+The code for this benchmark is available at [GitHub link].
+
+\section{Background and Related Work}\label{sec:background}
+
+\subsection{Object Detection Model}
+The YOLO family transformed object detection by treating the problem as a single regression task, enabling real-time performance. From its multiple iterations, we selected the Scaled-YOLOv4-P5 for our benchmark. While newer models exist, this model provides a representative benchmark for hardware. Its architecture is not just a simple, sequential CNN; it features a complex CSPDarknet53 \cite{wang2019cspnetnewbackboneenhance} backbone and a Path Aggregation Network (PANet) \cite{liu2018pathaggregationnetworkinstance} neck. The backbone consists of deep stacks of dense convolutional layers, which aligns well with the high data parallelism of the GPU's SIMT architecture. Conversely, the PANet, with its top-down and bottom-up feature-fusion pathways, creates an irregular, graph-like computation flow favoring the IPU's MIMD flexibility. This model thus serves as a stress test for the competing SIMT and MIMD execution models.
+
+Previous research highlights the performance of YOLOv4 variants on GPU hardware. For instance, the YOLOv4-tiny model achieved 371 FPS at 21.7\% AP on an NVIDIA GTX 1080 Ti and 443 FPS on an NVIDIA RTX 2080 Ti \cite{wang2021scaledyolov4scalingcrossstage}. The larger YOLOv4-P5 model, in turn, reached 41-43 FPS on an NVIDIA Tesla V100 GPU \cite{wang2021scaledyolov4scalingcrossstage}, similar to our results.
+
+\subsection{Hardware Accelerators}
+We chose the following two accelerators based on their similar power consumption levels and pricing. Table \ref{tab:hardware_specs} provides an overview of both the hardware platforms used.
+
+% GPU
+The NVIDIA A30 GPU is a data-center accelerator based on the Ampere architecture. Its execution model is Single Instruction, Multiple Threads (SIMT) and comprises 56 Streaming Multiprocessors (SMs), each executing the same instruction on many data points in parallel. This throughput-oriented design's performance relies on latency hiding. It uses a 24 GB pool of off-chip HMB2 memory, which is relatively slow to access (933 GB/s) compared to on-chip memory. Given the SIMT design, workloads characterized by irregular data access, control flow divergence or sparsity result in performance penalties on the GPU. Despite having a large memory capacity, the GPU is also limited by its memory bandwidth when the time spent transferring data outweighs the computational speedup.
+
+% IPU
+The Graphcore GC200 IPU is a many-core MIMD processor which addresses such limitations. It is a latency-oriented design, which contains 1,472 independent "tiles", each a full processor core with \SI{624}{\kibi\byte} of dedicated SRAM. This totals $\sim$\SI{900}{\mega\byte} of on-chip memory, accessible at an aggregated \SI{47.5}{\tera\byte\per\second}. The Poplar SDK acts as an Ahead-of-Time (AOT) compiler. It analyzes the entire YOLOv4 compute graph, partitions, it, and maps each operation (e.g. a specific convolution) and its required data (weights, activations) to a specific tile before execution, including a static, deterministic allocation for the distributed SRAM to minimize latency from caching, swapping, or prefetching. However, a key limitation arises from the constrained \SI{624}{\kibi\byte} per tile, leading to resource contention among instruction code, model weights and input data; for instance, the largest square matrix multiplication feasible on the GC200 IPU was limited to a side length of 3,584 elements (single-precision), utilizing only 17\% of available $\sim$\SI{900}{\mega\byte} of In-Processor Memory \cite{shekofteh2023performanceanalysisgraphcoreipus}. This memory bottleneck extends beyond matrix operations, though subsequent research on butterfly factorization \textcolor{red}{\cite{kazemPMBS,kazemPARCO}} has shown that structured sparsity can yield up to 98.5\% compression, offering potential strategies to alleviate constraints for large-scale models like YOLOv4.
+
+At runtime, the entire model is resident on-chip when using a single IPU and no streaming memory. As input images arrive, the chip executes in a Bulk Synchronous Parallel (BSP)-style \cite{Valiant1990ABM}: (1) all 1,472 tiles compute in parallel, (2) they all synchronize, (3) they exchange necessary data with other tiles and then repeat. This architecture enables significant performance advantages over GPUs in certain tasks; for example, the IPU achieved up to 100x speedup in Breadth-First-Search (BFS) execution time over an NVIDIA A100 GPU for large graphs with up to 1 million edges \cite{electronics13112011}.
+
+Benchmarks specific to YOLOv4 on IPU systems further underscore these benefits: the model attained 924 FPS with a latency of 6.49 ms for 896 px images at a batch size of 4 (half-precision) on the Open Graph Benchmark (OGB) \cite{graphcore_performance_results_2023}, while the Graphcore Bow-2000 system delivered 903 FPS compared to 122 FPS on an NVIDIA A100 under similar conditions, representing a throughput increase of more than 7 times \cite{bohl_graphcore_ipus_atpesc2022}.
+
+% TODO - \todo[inline]{Please check the following paragraph to see if you agree to keep it:}
+% Our choice of YOLOv4-P5 as the benchmark vehicle allows us to investigate whether the IPU's architectural advantages - demonstrated in prior work on matrix operations \cite{shekofteh2023performanceanalysisgraphcoreipus} and structured factorizations \textcolor{red}{\cite{kazemPMBS,kazemPARCO}}, translate to complex, state-of-the-art computer vision workloads.
+% \todo[fancyline]{The second citation is going to be published soon. Let's see if we can get the publication doi before submission of this paper}
+
+\section{Methodology}\label{sec:methodology}
+
+To provide a fair and direct comparison, we designed an experiment to measure the inference performance of the identical Scaled-YOLOv4-P5 model on both hardware platforms, varying key parameters.
+
+% TABLE - Specifications
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\textwidth}{l r r}
+    \toprule
+    Chip & Graphcore GC200 \linebreak IPU & NVIDIA A30 \linebreak GPU \\
+    \midrule
+    Number of Parallel Cores & \num{1472} & \num{3584} \\
+    Memory per Parallel Unit [\si{\kibi\byte}] & {624} & {192} \\
+    Number of Threads & \num{8832} & \num{229376} \\
+    Total SRAM [\si{\mebi\byte}] & {918} & {34.75} (L1 + L2) \\
+    Total DRAM [\si{\gibi\byte}] & {256} & {24} \\
+    DRAM Bandwidth [\si{\giga\byte\per\second}] & {20} & {933} \\
+    Clock Frequency [\si{\giga\hertz}] & {1.33} & {1.44} \\
+    FP32 Peak Compute [\si{\tera\flop\per\second}] & {62.5} & {10.3} \\
+    Power Consumption [\si{\watt}] & {150} & {165} \\
+    Inter-Chip-Bandwidth [\si{\giga\byte\per\second}] & {350} & {200} \\
+    Host-Device Memory Bandwidth\footnotemark[1] [\si{\giga\byte\per\second}] & {14.55} & {31.5} \\
+    Device-Host Memory Bandwidth\footnotemark[1] [\si{\giga\byte\per\second}] & {6.33} & {31.5} \\
+    Software Stack & PopTorch 3.40.0 & PyTorch 2.4.1 \\
+    CPU Host Processor &
+    \begin{tabular}[t]{@{}r@{}}2x AMD EPYC \\ 7443 24-Core
+    \end{tabular} &
+    \begin{tabular}[t]{@{}r@{}}2x AMD EPYC \\ 7452 32-Core
+    \end{tabular} \\
+    \bottomrule
+  \end{tabularx}
+  \vspace{0.5em}
+  \caption{Specification comparison of the environment setup used for the benchmarking.
+  }
+  \label{tab:hardware_specs}
+\end{table}
+\footnotetext[1]{as measured via Graphcore's tool \path{gc-hosttraffictest} for measuring the host-device bandwidth on the IPU.}
+
+\subsection{Model and Dataset}
+The benchmarked model was Scaled-YOLOv4-P5, adapted from the Graphcore example repository \cite{graphcore_yolov4_pytorch_example_2025}. The model has approximately $70.8 \times 10^6$ parameters and requires approximately $167 \times 10^9$ multiply-add operations (MACs) per inference \footnotemark. \footnote{Estimates using \path{torchinfo}.} We used the COCO 2017 dataset's \cite{lin2015microsoftcococommonobjects} 5,000-image validation set to verify accuracy using pre-trained weights \cite{graphcore_yolov4_p5_reference_weights_2025}, achieving $\text{mAP}_{50-95}$ results of 49.1 and $\text{mAP}_{50}$ of 68.7, consistent with the official benchmarks on both platforms \cite{graphcore_yolov4_pytorch_example_2025}.
+
+The GPU port was gradually adapted to ensure maximum overlap to the original implementation on the IPU. This included replacing PopTorch dependency with PyTorch for the inference, explicit device management to shift all relevant tensors to the GPU, using \path{cuDNN} to find the most optimal convolution algorithms applicable for the model and elimination of redundant data movement during post-processing steps such as non-maximum suppression (NMS).
+
+\subsection{Benchmarking Methodology}
+Two performance metrics were measured during the inference, including on-device pre-processing and post-processing:
+\begin{enumerate}
+  \item Latency (ms): We measured full round-trip (end-to-end) latency. To ensure precision, we used device-specific timing primitives: \path{poptorch.PoplarExecutor.getLatency()} for the IPU and \path{torch.cuda.Event} for the GPU. This captures all host-to-device transfers, model execution, and device-to-host transfers. For the GPU, we used \path{torch.cuda.synchronize()} to account for CUDA's asynchronous nature.
+  \item Throughput (FPS): We measured the total number of images processed per second. The total wall-clock time was measured using standard Python primitives (\path{time.time()}) on the host and divided by the total number of images, calculated after performing 100 warm-up iterations.
+\end{enumerate}
+
+We varied three experimental parameters:
+\begin{enumerate}
+  \item Input Image Size: We fixed the batch size to 1 and varied the input image sizes from 64 to 1280 pixels. The baseline batch size of 1 ensures the maximum possible image size can be tested on both hardware, along with providing a benchmark for real-life scenarios where batching is not feasible.
+  \item Batch Size: We fixed the image sizes and varied the batch sizes in powers of two from 1 to 64. Image sizes of 128, 224 and 320 pixels are used to provide a comprehensive overview.
+  \item Floating-Point Precision: We repeated all the experiments using both half-precision (FP16) and single-precision (FP32) floating point parameters.
+\end{enumerate}
+
+Lastly, to quantify the practical implications of each platform's development cycle, we measured the total time-to-result, defined as the sum of compilation and execution times.
+
+All tests are performed using a single IPU and GPU to ensure a fair comparison. The results are reported as the average of 100 benchmark iterations.
+
+\section{Results}\label{sec:results}
+
+%[Performance Envelope]
+Once the accuracy of the model was verified on both platforms, we varied the image sizes and batch sizes. Preliminary tests revealed a failure on the IPU when compiling the model using a batch size of 2 using the model's default image size of 896 px due to the limited on-tile memory capacity of \SI{624}{\kibi\byte} being exhausted. This memory limitation on the IPU constraints what image and batch sizes could be tested on both the hardware. Thus, the performance envelope of the IPU had to be determined before further tests could be performed, which is presented in Figure \ref{fig:performance_envelope}.
+
+% [Varying Image Sizes - Latency - both precisions]
+When varying the input image sizes, we find the IPU being 3.99x faster than the GPU on the model's default input image size of 896 px, with a round-trip latency of 6.56 ms compared to the GPU's 26.17 ms when using a batch size of 1 and half precision. At batch size of 1, the IPU is faster across all image sizes. The GPU maintains an almost constant latency until images of size 800 px, after which it trends upwards. At half precision, we observe a speedup ranging from 24.7x (image size = 128 px) till 3.60x (image size = 1088 px) on the IPU. The doubling of memory requirements when using a higher floating point precision level (FP32) results in only half the image sizes compiling on the IPU along with a higher rate of increase in latency when increasing the input image size.
+
+% [Varying Batch sizes - Latency and Throughput - both precisions]
+When varying the batch size on the IPU, smaller image sizes of 128 px, 224 px and 320 px are used due to its limited memory. The GPU maintains a consistent latency (at $\sim$25 ms) from batch sizes of 1 to 8, confirming it is overhead-bound. The IPU's latency scales linearly with batch size (e.g. from 1.03 ms at batch 1 to 8.51 ms at batch 64 for 128 px images), confirming it is compute-bound. As shown in Figure \ref{fig:throughput_precision_comparison}, the GPU's throughput scales almost linearly with batch size, whereas the IPU's scaling is shown to be weaker. Figure \ref{fig:latency_precision_comparison} shows the IPU always maintaining a lower latency than the GPU.
+
+% [Varying the Precision]
+Doubling the precision doubles the memory footprint for weights and activations. This leads to a cut in half for the IPU's maximum achievable batch size for most tests, as shown in Figure \ref{fig:latency_vs_size_precision}, \ref{fig:latency_precision_comparison} and \ref{fig:throughput_precision_comparison} along with a greater increase in latency on the IPU compared to the GPU, for which the latency and throughput remains the same despite using FP32 until the batch size of 8.
+
+% [Compilation Times]
+Lastly, Figure \ref{fig:ipu_compilation_times} shows the Poplar compiler taking 382.79 seconds (over 6 minutes) to run the benchmark for the default image size of 896 px, compared to the GPU's 15.56 seconds.
+
+\input{plots.tex}
+
+% \todo[inline]{Unsure if Tables 2 and 3 worth including.}
+% Tables \ref{tab:perf_vs_img_size} and \ref{tab:perf_vs_batch_size} summarize the key performance metrics across different configurations tested in our experiments.
+% \input{tables.tex}
+
+\section{Discussion}\label{sec:discussion}
+% [Performance Envelope]
+As Figure \ref{fig:performance_envelope} illustrates, the NVIDIA A30, with its 24 GB of HBM2, easily handled all tested batch sizes. The Graphcore GC200, however, is severely constrained by its $\sim$\SI{900}{\mega\byte} of on-chip SRAM. At the model's native resolution, it can only compile for a batch size of 1. At 1120 px, it fails to compile entirely.
+
+% [Varying Image Sizes - Discussion]
+The performance difference when varying the input image size stems directly from the architectural trade-offs. The IPU's 6.56 ms is the true compute time, as the model and graph are resident in fast SRAM. Thus, the IPU's latency, governed purely by computation, scales quadratically with the range of image sizes throughout, conforming to theoretical relationship of quadratic scaling for increasing input image sizes on the YOLOv4 model \cite{wang2021scaledyolov4scalingcrossstage}. The GPU's 26.17 ms is an overhead-bound time. Its powerful SMs are starved for data at a batch size of 1, and the total time is dominated by the fixed costs of CUDA kernel launches and the high latency of fetching data from off-chip HBM2. For real-time applications, the IPU's MIMD/SRAM architecture is demonstrably superior.
+
+%[Varying Batch Size - Discussion]
+Figure \ref{fig:latency_precision_comparison} and \ref{fig:throughput_precision_comparison} show how the GPU's SIMT architecture, designed for massive data parallelism, becomes fully saturated only at larger batch sizes, whereas the IPU's MIMD architecture and limited memory prevent it from scaling to the same batch sizes. In all the presented experiments, the IPU remains consistently bound more by compute than memory, unlike the GPU, which is bound by compute only after large enough input data is provided. This shows the GPU's advantage for applications where data can be batched and throughput is the primary metric to optimize.
+
+% [Total time-to-result - Discussion]
+Lastly, Figure \ref{fig:ipu_compilation_times} illustrates how the NVIDIA A30 GPU's eager execution model and a Just-In-Time (JIT) execution approach is 24.6x faster compared to the IPU on the default image size. Pre-optimized kernels are launched during execution, incurring minimal setup overhead. The Graphcore IPU, however, requires a complete, static computational graph before execution. The Poplar compiler performs an Ahead-of-Time (AOT) compilation to perform global optimizations and map the entire graph onto the IPU's 1,472 tiles, which incurs a substantial initial cost, although the resulting executable is cached for subsequent runs which share the same parameters.
+
+\section{Conclusion}\label{sec:conclusion}
+
+After verifying the feasibility of running an object detection model on the IPU, we show how the IPU excels at minimizing latency when using smaller image and batch sizes in contrast to the GPU, which excels at maximizing throughput with bigger image and batch sizes. The primary performance differentiator is in single-batch inference, where the IPU exhibits a significant advantage for real-time applications; at input image sizes of 896 px using FP16 precision, the IPU delivers a latency of 6.56 ms, an almost 4x speedup over the GPU's 26.17 ms. This low-latency advantage presents a trade-off, as the GPU's larger memory capacity of 24 GB supports higher batch sizes (e.g., 32 vs. 8 at 320 px), enabling the GPU to achieve a greater peak throughput (426.17 FPS) compared to the IPU's memory-limited maximum (365.54 FPS) with $\sim$900MB of on-chip memory. Finally, due to the IPU's compilation cost, the total time to benchmark a new run was more than an order of magnitude greater than the GPU's. Nonetheless, for all independent metrics we benchmark on the IPU where it was not constrained by its memory, it outperformed the GPU.
+
+These findings suggest several avenues for future research. A comprehensive roofline analysis, for instance, could quantify performance bottlenecks, while energy efficiency could be assessed using metrics like FLOPS/Watt. Furthermore, this evaluation could be extended to multi-IPU configurations and models with diverse computational and memory demands. The GC200 architecture also supports Streaming Memory, which was not utilized in this study. Future work should benchmark performance when streaming weights and activations from this larger memory pool to see if it provides a viable path for larger models or batches on the IPU. The results underscore the importance of aligning the architectural strengths of an accelerator with the specific requirements of the target application to maximize performance.
+
+\bibliographystyle{splncs04}
+\bibliography{Bibliography}
+
+\end{document}

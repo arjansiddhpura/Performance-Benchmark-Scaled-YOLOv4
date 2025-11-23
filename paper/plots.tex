@@ -1,0 +1,291 @@
+% This file contains all the plots extracted from the main LaTeX paper for cleanliness.
+% Include this file in the main document using \input{plots.tex} where appropriate.
+
+% PLOT 1 - PERFORMANCE ENVELOPE
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.75\textwidth}{!}{
+    \begin{tikzpicture}
+      \begin{axis}[
+          % title={Batch Size vs. Image Size (Linear-Linear Scale)},
+          width=0.8\textwidth,
+          height=0.50\textwidth,
+          xlabel={Image Size [pixels]},
+          ylabel={Batch Size},
+          symbolic x coords={128, 224, 320, 416, 512, 640, 896},
+          xtick=data,
+          ymin=0,
+          ymax=70,
+          ytick={0,4,8,16,32,64},
+          yticklabels={0,4,8,16,32,64},
+          legend style={at={(0.5,-0.32)}, anchor=north, legend columns=2, transpose legend, legend cell align={left}},
+          enlarge x limits=0.10,
+          % enlarge y limits=0.05,
+          grid=major,
+          grid style={dashed, gray!50},
+          ybar,
+          bar width=5pt,
+        ]
+
+        % IPU data (FP16)
+        \addplot+[blue, fill=blue!60] table [x=ImageSize, y=MaxIPUBatchSize_fp16, col sep=space] {Data/05-performance-envelope.dat};
+        \addlegendentry{Max IPU Batch Size (FP16)}
+
+        % IPU data (FP32)
+        \addplot+[blue!75, fill=blue!20] table [x=ImageSize, y=MaxIPUBatchSize_fp32, col sep=space] {Data/05-performance-envelope.dat};
+        \addlegendentry{Max IPU Batch Size (FP32)}
+
+        % GPU data (FP16)
+        \addplot+[red, fill=red!60] table [x=ImageSize, y=MaxGPUBatchSize_fp16, col sep=space] {Data/05-performance-envelope.dat};
+        \addlegendentry{Max GPU Batch Size (FP16)}
+
+        % GPU data (FP32)
+        \addplot+[red!75, fill=red!20] table [x=ImageSize, y=MaxGPUBatchSize_fp32, col sep=space] {Data/05-performance-envelope.dat};
+        \addlegendentry{Max GPU Batch Size (FP32)}
+
+      \end{axis}
+    \end{tikzpicture}
+  }
+  \caption{Maximum achievable batch size for the Scaled-YOLOv4-P5 model on a set of pre-defined image sizes, contrasting the memory limitations of the Graphcore GC200 IPU to the Nvidia A30 GPU.}
+  \label{fig:performance_envelope}
+\end{figure}
+
+% PLOT 2 - VARYING IMAGE SIZES - LATENCY
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.75\textwidth}{!}{
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=0.8\textwidth,
+          height=0.55\textwidth,
+          % title={Effect of Precision on Latency vs. Image Size},
+          xlabel={Image Size [pixels]},
+          ylabel={Latency [ms]},
+          xmin=0, xmax=1300,
+          xtick={0, 200, 400, 600, 800, 1000, 1200},
+          enlarge y limits=0.10,
+          enlarge x limits=0.10,
+          ymode=log,
+          log basis y=10,
+          legend style={at={(0.5, -0.23)}, anchor=north, legend columns=2, legend cell align={left}}, % Arranged legend in 2 columns
+          grid=major,
+          grid style={dashed, gray!50},
+          log ticks with fixed point,
+        ]
+
+        % --- FP16 Data (Solid Lines) ---
+
+        % IPU FP16
+        \addplot+[mark=*, thick, blue, mark options={scale=0.7}, solid]
+        table[
+          x=image_size,
+          y=avg_latency_ms,
+          col sep=space
+        ] {Data/05-effect-of-precision/05-effect-of-image-size/latency-ipu-fp16.dat};
+        \addlegendentry{IPU (FP16)}
+
+        % % GPU FP16
+        \addplot+[mark=square*, thick, red, solid, mark options={scale=0.7}]
+        table[
+          x=image_size,
+          y=avg_latency_ms,
+          col sep=space
+        ] {Data/05-effect-of-precision/05-effect-of-image-size/latency-gpu-fp16.dat};
+        \addlegendentry{GPU (FP16)}
+
+        % --- FP32 Data (Dashed Lines) ---
+
+        % IPU FP32
+        \addplot+[mark=diamond*, thick, Cyan!90!black, mark options={fill=Cyan!90!black, draw=Cyan!90!black, scale=1.1}, dashed]
+        table[
+          x=image_size,
+          y=avg_latency_ms,
+          col sep=space
+        ] {Data/05-effect-of-precision/05-effect-of-image-size/latency-ipu-fp32.dat};
+        \addlegendentry{IPU (FP32)}
+
+        % % GPU FP32
+        \addplot+[mark=square*, thick, red!50, dashed, mark options={scale=0.8}]
+        table[
+          x=image_size,
+          y=avg_latency_ms,
+          col sep=space
+        ] {Data/05-effect-of-precision/05-effect-of-image-size/latency-gpu-fp32.dat};
+        \addlegendentry{GPU (FP32)}
+
+      \end{axis}
+    \end{tikzpicture}
+  }
+  \caption{Comparison of the effect of changing floating-point precision from FP16 to FP32 on the average single-batch inference latency as a function of the input image size. The throughput in this case is the inverse of latency given the fixed batch size of 1. The plot uses a log-linear scale.}
+  \label{fig:latency_vs_size_precision}
+\end{figure}
+
+% PLOT 3 - VARYING BATCH SIZE - LATENCY
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.75\textwidth}{!}{
+    \begin{tikzpicture}
+      \begin{axis}[
+          % title={IPU Latency vs. Batch Size (128 pixels Image)},
+          xlabel={Batch Size},
+          ylabel={Latency [ms]},
+          width=0.8\textwidth,
+          height=0.55\textwidth,
+          xmode=log,
+          ymode=log,
+          log basis x=2,
+          xtick={1, 2, 4, 8, 16, 32, 64, 64},
+          xticklabels={1, 2, 4, 8, 16, 32, 64},
+          grid=major,
+          grid style={dashed, gray!50},
+          legend style={at={(0.5, -0.23)}, anchor=north, legend columns=2, legend cell align={left}},
+          enlarge y limits=0.10,
+          enlarge x limits=0.10,
+          log ticks with fixed point,
+        ]
+
+        % IPU
+        \addplot+[mark=*, thick, blue, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_latency_128_fp16.dat};
+        \addlegendentry{IPU (128 pixels) (FP16)}
+
+        \addplot+[mark=*, thick, Cyan!90!black, mark options={fill=Cyan!90!black, draw=Cyan!90!black, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_latency_128_fp32.dat};
+        \addlegendentry{IPU (128 pixels) (FP32)}
+
+        \addplot+[mark=diamond*, thick, blue, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_latency_224_fp16.dat};
+        \addlegendentry{IPU (224 pixels) (FP16)}
+
+        \addplot+[mark=diamond*, thick, Cyan!90!black, mark options={fill=Cyan!90!black, draw=Cyan!90!black, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_latency_224_fp32.dat};
+        \addlegendentry{IPU (224 pixels) (FP32)}
+
+        % GPU
+        \addplot+[mark=*, thick, red, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_latency_128_fp16.dat};
+        \addlegendentry{GPU (128 pixels) (FP16)}
+
+        \addplot+[mark=*, thick, red!50, mark options={fill=red!50, draw=red!50, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_latency_128_fp32.dat};
+        \addlegendentry{GPU (128 pixels) (FP32)}
+
+        \addplot+[mark=diamond*, thick, red, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_latency_224_fp16.dat};
+        \addlegendentry{GPU (224 pixels) (FP16)}
+
+        \addplot+[mark=diamond*, thick, red!50, mark options={fill=red!50, draw=red!50, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_latency_224_fp32.dat};
+        \addlegendentry{GPU (224 pixels) (FP32)}
+      \end{axis}
+    \end{tikzpicture}
+  }
+  \caption{Average inference latency as a function of batch size for both FP16 and FP32. This is shown using two image sizes to contrast not just the hardware, but also the effects of changing precision and image size on the same hardware. The plot uses a $\log_{10}$-$\log_2$ scale.}
+  \label{fig:latency_precision_comparison}
+\end{figure}
+
+% PLOT 4 - VARYING BATCH SIZE - THROUGHPUT
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.75\textwidth}{!}{
+    \begin{tikzpicture}
+      \begin{axis}[
+          % title={IPU Throughput vs. Batch Size (128 pixels Image)},
+          xlabel={Batch Size},
+          ylabel={Throughput [FPS]},
+          width=0.8\textwidth,
+          height=0.55\textwidth,
+          xmode=log,
+          ymode=log,
+          log basis x=2,
+          xtick={1, 2, 4, 8, 16, 32, 64},
+          xticklabels={1, 2, 4, 8, 16, 32, 64},
+          grid=major,
+          grid style={dashed, gray!50},
+          legend style={at={(0.5, -0.23)}, anchor=north, legend columns=2, legend cell align={left}},
+          enlarge y limits=0.10,
+          enlarge x limits=0.10,
+          log ticks with fixed point,
+        ]
+
+        % IPU
+        \addplot+[mark=*, thick, blue, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_throughput_128_fp16.dat};
+        \addlegendentry{IPU (128 pixels) (FP16)}
+
+        \addplot+[mark=*, thick, Cyan!90!black, mark options={fill=Cyan!90!black, draw=Cyan!90!black, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_throughput_128_fp32.dat};
+        \addlegendentry{IPU (128 pixels) (FP32)}
+
+        \addplot+[mark=diamond*, thick, blue, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_throughput_224_fp16.dat};
+        \addlegendentry{IPU (224 pixels) (FP16)}
+
+        \addplot+[mark=diamond*, thick, Cyan!90!black, mark options={fill=Cyan!90!black, draw=Cyan!90!black, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/ipu_throughput_224_fp32.dat};
+        \addlegendentry{IPU (224 pixels) (FP32)}
+
+        % GPU
+        \addplot+[mark=*, thick, red, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_throughput_128_fp16.dat};
+        \addlegendentry{GPU (128 pixels) (FP16)}
+
+        \addplot+[mark=*, thick, red!50, mark options={fill=red!50, draw=red!50, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_throughput_128_fp32.dat};
+        \addlegendentry{GPU (128 pixels) (FP32)}
+
+        \addplot+[mark=diamond*, thick, red, mark options={scale=0.8}, solid]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_throughput_224_fp16.dat};
+        \addlegendentry{GPU (224 pixels) (FP16)}
+
+        \addplot+[mark=diamond*, thick, red!50, mark options={fill=red!50, draw=red!50, scale=1.0}, dashed]
+        table {Data/05-effect-of-precision/05-effect-of-batch-size/gpu_throughput_224_fp32.dat};
+        \addlegendentry{GPU (224 pixels) (FP32)}
+
+      \end{axis}
+    \end{tikzpicture}
+  }
+  \caption{Throughput vs. batch size across FP16 and FP32 precision for the image sizes of 128 and 224 pixels. The plot uses a $\log_{10}$-$\log_2$ scale.}
+  \label{fig:throughput_precision_comparison}
+\end{figure}
+
+% PLOT 5 - TOTAL TIME-TO-RESULT
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.75\textwidth}{!}{
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=0.8\textwidth,
+          height=0.45\textwidth,
+          ybar,
+          bar width=10pt,
+          xlabel={Image Size [pixels]},
+          ylabel={Total Time [s]},
+          symbolic x coords={128,224,320,416,512,640,896,1024},
+          xtick=data,
+          enlarge x limits=0.10,
+          ymin=0,
+          ymax=450,
+          grid=major,
+          grid style={dashed, gray!50},
+          legend style={at={(0.5,-0.32)}, anchor=north, legend columns=2, transpose legend, legend cell align={left}},
+        ]
+
+        % IPU Run time
+        \addplot+[ybar stacked, bar shift=-0.22cm, draw=blue, fill=blue!60] table[x=img_size, y expr=\thisrow{total_test_time}-\thisrow{compilation_time}, col sep=space] {Data/05-compilation-times/05-compilation-times-ipu.dat};
+        \addlegendentry{IPU Run Time (s)}
+
+        % IPU Compilation time
+        \addplot+[ybar stacked, bar shift=-0.22cm, draw=blue!75, fill=blue!20] table[x=img_size, y=compilation_time, col sep=space] {Data/05-compilation-times/05-compilation-times-ipu.dat};
+        \addlegendentry{IPU Compilation Time (s)}
+
+        % GPU Run time
+        \addplot+[ybar, bar shift=0.22cm, draw=red, fill=red!60] table[x=img_size, y=total_runtime, col sep=space] {Data/05-compilation-times/05-run-times-gpu.dat};
+        \addlegendentry{GPU Run Time (s)}
+
+      \end{axis}
+    \end{tikzpicture}
+  }
+  \caption{Comparison of the total time-to-result on the IPU and the GPU. The IPU requires significant time to compile along with run-time overheads.}
+  \label{fig:ipu_compilation_times}
+\end{figure}

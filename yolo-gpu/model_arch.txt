@@ -1,0 +1,1022 @@
+[1,0]<stdout>:=========================================================================================================
+[1,0]<stdout>:Layer (type:depth-idx)                                  Output Shape              Param #
+[1,0]<stdout>:=========================================================================================================
+[1,0]<stdout>:Yolov4P5                                                --                        --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─ModuleList: 3-1                             --                        --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1-1                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:│    └─ConvNormAct: 2-1                                 [2, 32, 640, 640]         --
+[1,0]<stdout>:│    │    └─Conv2d: 3-2                                 [2, 32, 640, 640]         896
+[1,0]<stdout>:│    │    └─Identity: 3-3                               [2, 32, 640, 640]         --
+[1,0]<stdout>:│    │    └─Mish: 3-4                                   [2, 32, 640, 640]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-5                                   [2, 32, 640, 640]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2-2                                     [2, 64, 320, 320]         --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-6                            [2, 64, 320, 320]         18,496
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-7                                   [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-8                                   [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CrossStagePartialBlock: 3-9                 [2, 64, 320, 320]         19,680
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-10                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-11                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-12                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-13                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-14                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-15                                  [2, 32, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                          [1,0]<stdout>:         --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-16                                  [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-17                                  [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-18                                  [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-19                                  [2, 64, 320, 320]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2-3                                     [2, 128, 160, 160]        --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-20                           [2, 128, 160, 160]        73,856
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-21                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-22                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CrossStagePartialBlock: 3-23                [2, 128, 160, 160]        160,448
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-24                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-25                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-26                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-27                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-28                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-29                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-30                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-31                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1             [1,0]<stdout>:                      --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-32                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-33                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-34                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-35                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-36                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-37                                  [2, 64, 160, 160]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-38                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-39                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-40                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-41                                  [2, 128, 160, 160]        --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2-4                                     [2, 256, 80, 80]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-42                           [2, 256, 80, 80]          295,168
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-43                                  [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-44                                  [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CrossStagePartialBlock: 3-45                [2, 256, 80, 80]          2,609,536
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-46                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish[1,0]<stdout>:: 3-47                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-48                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-49                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-50                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-51                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-52                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-53                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-54                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-55                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-56                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-57                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-58                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-59                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-60                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-61                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish[1,0]<stdout>:: 3-62                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-63                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-64                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-65                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-66                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-67                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-68                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-69                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-70                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-71                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-72                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-73                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-74                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-75                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-76                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish[1,0]<stdout>:: 3-77                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-78                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-79                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-80                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-81                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-82                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-83                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-84                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-85                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-86                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-87                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-88                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-89                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-90                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-91                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish[1,0]<stdout>:: 3-92                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-93                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-94                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-95                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-96                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-97                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-98                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-99                                  [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-100                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-101                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-102                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-103                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-104                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-105                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-106                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish[1,0]<stdout>:: 3-107                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-108                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-109                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-110                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-111                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2-5                                     [2, 512, 40, 40]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-112                          [2, 512, 40, 40]          1,180,160
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-113                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-114                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CrossStagePartialBlock: 3-115               [2, 512, 40, 40]          10,429,184
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-116                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-117                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-118                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-119                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-120                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-121                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-122                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│  [1,0]<stdout>:  └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-123                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-124                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-125                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-126                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-127                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-128                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-129                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-130                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-131                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-132                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-133                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-134                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-135                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-136                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-137                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│  [1,0]<stdout>:  └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-138                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-139                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-140                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-141                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-142                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-143                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-144                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-145                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-146                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-147                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-148                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-149                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-150                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-151                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-152                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│  [1,0]<stdout>:  └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-153                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-154                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-155                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-156                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-157                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-158                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-159                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-160                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-161                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-162                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-163                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-164                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-165                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-166                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-167                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│  [1,0]<stdout>:  └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-168                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-169                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-170                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-171                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-172                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-173                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-174                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-175                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-176                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-177                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-178                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-179                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-180                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-181                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2-6                                     [2, 1024, 20, 20]         --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-182                          [2, 1024, 20, 20]         4,719,616
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                       [1,0]<stdout>: --
+[1,0]<stdout>:│    │    └─Mish: 3-183                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-184                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─CSPDark: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CrossStagePartialBlock: 3-185               [2, 1024, 20, 20]         20,719,104
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-186                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-187                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-188                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-189                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-190                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-191                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-192                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-193                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-194                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-195                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-196                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-197                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-198                                 [2, 512, 20, [1,0]<stdout>:20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-199                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-200                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-201                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-202                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-203                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-204                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-205                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-206                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-207                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-208                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-209                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-210                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-211                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-212                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-213                                 [2, 512, 20, [1,0]<stdout>:20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-214                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-215                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-216                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-217                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-218                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-219                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1-2                                     [2, 1024, 20, 20]         --
+[1,0]<stdout>:│    └─CSPSPP: 2-7                                      [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─Conv2d: 3-220                               [2, 512, 20, 20]          524,288
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-221                          [2, 512, 20, 20]          524,800
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-222                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-223                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-224                          [2, 512, 20, 20]          2,359,808
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-225                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-226                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-227                          [2, 512, 20, 20]          262,656
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-228                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-229                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-230                          [2, 512, 20, 20]          1,049,088
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2             [1,0]<stdout>:                      --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-231                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-232                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-233                          [2, 512, 20, 20]          2,359,808
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-234                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-235                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─BatchNorm2d: 3-236                          [2, 1024, 20, 20]         2,048
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-237                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-238                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-239                          [2, 512, 20, 20]          524,800
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-240                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-241                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-242                          [2, 256, 20, 20]          131,328
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-243                                 [2, 256, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-244                                 [2, 256, 20, 20]          --
+[1,0]<stdout>:│    │    └─Upsample: 3-245                             [2, 256, 40, 40]          --
+[1,0]<stdout>:│    └─CSPUp: 2-8                                       [2, 256, 40, 40]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-246                          [2, 256, 40, 40]          131,328
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-247                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-248                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:│    └─CSPUp: 2                                         --                        --
+[1,0]<stdout>:│    │    └─CSPNeck: 3-249                              [2, 256, 40, 40]          2,296,832
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                     [1,0]<stdout>:   --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-250                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-251                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-252                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-253                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-254                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-255                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-256                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-257                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-258                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-259                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-260                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-261                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-262                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-263                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-264                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                     [1,0]<stdout>:   --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-265                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-266                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-267                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:│    └─CSPUp: 2                                         --                        --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-268                          [2, 128, 40, 40]          32,896
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-269                                 [2, 128, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-270                                 [2, 128, 40, 40]          --
+[1,0]<stdout>:│    └─CSPUp: 2                                         --                        --
+[1,0]<stdout>:│    │    └─Upsample: 3-271                             [2, 128, 80, 80]          --
+[1,0]<stdout>:│    └─CSPUp: 2-9                                       [2, 128, 80, 80]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-272                          [2, 128, 80, 80]          32,896
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-273                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-274                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:│    └─CSPUp: 2                                         --                        --
+[1,0]<stdout>:│    │    └─CSPNeck: 3-275                              [2, 128, 80, 80]          574,976
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-276                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-277                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-278                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-279                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-280                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --[1,0]<stdout>:                        --
+[1,0]<stdout>:│    │    └─Mish: 3-281                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-282                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-283                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-284                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-285                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-286                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-287                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-288                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-289                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-290                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-291                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-292                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-293                                 [2, 128, 80, 80]          --
+[1,0]<stdout>:│    └─CSPUp: 2                                         --                        --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-294                          [2, 256, 80, 80]          295,168
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-295                                 [2, 256, 80, 80]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-296                          [1,0]<stdout>:       [2, 256, 80, 80]          --
+[1,0]<stdout>:│    └─CSPDown: 2-10                                    [2, 512, 40, 40]          --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-297                          [2, 256, 40, 40]          295,168
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-298                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-299                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:│    └─CSPDown: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CSPNeck: 3-300                              [2, 256, 40, 40]          2,296,832
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-301                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-302                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-303                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-304                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-305                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-306                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-307                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-308                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-309                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-310                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-311                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                   [1,0]<stdout>:                     --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-312                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-313                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-314                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-315                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-316                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-317                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-318                                 [2, 256, 40, 40]          --
+[1,0]<stdout>:│    └─CSPDown: 2                                       --                        --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-319                          [2, 512, 40, 40]          1,180,160
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-320                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-321                                 [2, 512, 40, 40]          --
+[1,0]<stdout>:│    └─CSPDown: 2-11                                    [2, 1024, 20, 20]         --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-322                          [2, 512, 20, 20]          1,180,160
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-323                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-324                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    └─CSPDown: 2                                       --                        --
+[1,0]<stdout>:│    │    └─CSPNeck: 3-325                              [2, 512, 20, 20]          9,181,184
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-326                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-327                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─C[1,0]<stdout>:onvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-328                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-329                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-330                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-331                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-332                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-333                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-334                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-335                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-336                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-337                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-338                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-339                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-340                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-341                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-342                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─C[1,0]<stdout>:SPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-343                                 [2, 512, 20, 20]          --
+[1,0]<stdout>:│    └─CSPDown: 2                                       --                        --
+[1,0]<stdout>:│    │    └─ConvNormAct: 3-344                          [2, 1024, 20, 20]         4,719,616
+[1,0]<stdout>:├─Yolov4P5BackBone: 1                                   --                        --
+[1,0]<stdout>:│    └─ConvNormAct: 2                                   --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-345                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4P5Neck: 1                                       --                        --
+[1,0]<stdout>:│    └─CSPSPP: 2                                        --                        --
+[1,0]<stdout>:│    │    └─Mish: 3-346                                 [2, 1024, 20, 20]         --
+[1,0]<stdout>:├─Yolov4Head: 1-3                                       [2, 25600, 85]            --
+[1,0]<stdout>:│    └─Conv2d: 2-12                                     [2, 340, 80, 80]          87,380
+[1,0]<stdout>:│    └─Sigmoid: 2-13                                    [2, 4, 80, 80, 85]        --
+[1,0]<stdout>:│    └─CopyTensor: 2-14                                 [2, 4, 80, 80, 5]         --
+[1,0]<stdout>:├─Yolov4Head: 1-4                                       [2, 6400, 85]             --
+[1,0]<stdout>:│    └─Conv2d: 2-15                                     [2, 340, 40, 40]          174,420
+[1,0]<stdout>:│    └─Sigmoid: 2-16                                    [2, 4, 40, 40, 85]        --
+[1,0]<stdout>:│    └─CopyTensor: 2-17                                 [2, 4, 40, 40, 5]         --
+[1,0]<stdout>:├─Yolov4Head: 1-5                                       [2, 1600, 85]             --
+[1,0]<stdout>:│    └─Conv2d: 2-18                                     [2, 340, 20, 20]          348,500
+[1,0]<stdout>:│    └─Sigmoid: 2-19                                    [2, 4, 20, 20, 85]        --
+[1,0]<stdout>:│    └─CopyTensor: 2-20                                 [2, 4, 20, 20, 5]         --
+[1,0]<stdout>:├─IPUPredictionsPostProcessing: 1-6                     [2, 200, 6]               --
+[1,0]<stdout>:│    └─Nms: 2-21                                        [2, 200]                  --
+[1,0]<stdout>:=========================================================================================================
+[1,0]<stdout>:Total params: 70,792,284
+[1,0]<stdout>:Trainable params: 70,750,556
+[1,0]<stdout>:Non-trainable params: 41,728
+[1,0]<stdout>:Total mult-adds (G): 166.93
+[1,0]<stdout>:=========================================================================================================
+[1,0]<stdout>:Input size (MB): 9.83
+[1,0]<stdout>:Forward/backward pass size (MB): 2298.50
+[1,0]<stdout>:Params size (MB): 283.17
+[1,0]<stdout>:Estimated Total Size (MB): 2591.50
+[1,0]<stdout>:=========================================================================================================

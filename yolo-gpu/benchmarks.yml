@@ -1,0 +1,84 @@
+# python3 -m examples_utils benchmark --spec <PATH_TO_YAML> --benchmark <BENCHMARK_NAME>
+
+---
+config_options: &config_options
+    requirements_path: requirements.txt
+    pre_run_commands: [make]
+
+poptorch_yolov4_infer_real_pod4_default:
+    <<: *config_options
+    description: Default PopTorch YOLOv4 Inference Benchmark on 4 IPUs using COCO val2017 Dataset
+    parameters:
+        - [img_size, batch_size, device_iterations, max_detections, topk_nums]
+        - [896, 1, 5, 300, 2000]
+        - [896, 1, 10, 300, 2000]
+        - [640, 2, 5, 300, 2000]
+        - [640, 2, 10, 300, 2000]
+        - [512, 2, 5, 300, 2000]
+        - [512, 2, 10, 300, 2000]
+        - [416, 2, 5, 300, 2000]
+        - [416, 4, 10, 300, 2000]
+    cmd: >-
+        mpirun --tag-output --np 4 --allow-run-as-root
+          python3 run.py
+            --device-iterations {device_iterations}
+            --image-size {img_size}
+            --micro-batch-size {batch_size}
+            --benchmark
+            --mode test_inference
+            --nms-max-detections {max_detections}
+            --pre-nms-topk-k {topk_nums}
+    data:
+        throughput:
+            regexp: 'throughput: *(.*?) samples\/sec'
+        latency:
+            regexp: "latency avg: *(.*?) ms"
+    output:
+        - [Batchsize, "batch_size"]
+        - [Device iterations, "device_iterations"]
+        - [Image size, "img_size"]
+        - [Pre-nms Topk, "topk_nums"]
+        - [NMS max detections, "max_detections"]
+        - [samples/sec, "throughput"]
+        - [latency(ms), "latency"]
+
+poptorch_yolov4_infer_img_size:
+    <<: *config_options
+    description: PopTorch YOLOv4 Inference Benchmark on 1 IPU using COCO val2017 Dataset with varying image sizes
+    parameters:
+        - [img_size, batch_size, device_iterations, max_detections, topk_nums]
+        - [128, 1, 1, 300, 2000]
+        - [256, 1, 1, 300, 2000]
+        - [384, 1, 1, 300, 2000]
+        - [416, 1, 1, 300, 2000]
+        - [512, 1, 1, 300, 2000]
+        - [640, 1, 1, 300, 2000]
+        - [768, 1, 1, 300, 2000]
+        - [896, 1, 1, 300, 2000]
+        - [1024, 1, 1, 300, 2000]
+        # - [1152, 1, 1, 300, 2000]
+        # - [1280, 1, 1, 300, 2000]
+    cmd: >-
+        mpirun --tag-output --np 1 --allow-run-as-root
+          python3 run.py
+            --device-iterations {device_iterations}
+            --image-size {img_size}
+            --micro-batch-size {batch_size}
+            --benchmark
+            --mode test_inference
+            --nms-max-detections {max_detections}
+            --pre-nms-topk-k {topk_nums}
+            --num-workers 1
+    data:
+        throughput:
+            regexp: 'throughput: *(.*?) samples\/sec'
+        latency:
+            regexp: "latency avg: *(.*?) ms"
+    output:
+        - [Batchsize, "batch_size"]
+        - [Device iterations, "device_iterations"]
+        - [Image size, "img_size"]
+        - [Pre-nms Topk, "topk_nums"]
+        - [NMS max detections, "max_detections"]
+        - [samples/sec, "throughput"]
+        - [latency(ms), "latency"]

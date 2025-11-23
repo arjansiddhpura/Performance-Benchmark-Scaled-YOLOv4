@@ -1,0 +1,371 @@
+Setting up GPU environment...
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:33:58_PDT_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+Setup complete.
+==========================================================================================
+   Starting Automatic Batch Size Sweep (Precision: half)   
+==========================================================================================
+>>> Testing Image Size: 128x128
+  - Trying Batch Size: 1...
+False,1,1,128,half,24.713,44.426,20.967,258.268,23.431,3.871,47.599,4.880
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,128,half,25.007,86.534,21.338,214.392,19.203,9.326,93.568,10.269
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,128,half,25.059,170.725,21.543,195.700,17.241,20.433,185.328,19.184
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,128,half,25.586,337.868,21.494,218.586,19.530,36.585,371.535,39.876
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,128,half,26.438,652.103,22.259,220.885,19.662,72.415,717.573,75.919
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,128,half,24.671,1298.124,23.542,33.298,1.382,950.591,1357.037,59.978
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,128,half,33.564,1909.017,32.162,50.083,1.968,1275.585,1987.263,82.306
+  - ✅ SUCCESS with Batch Size: 64.
+Image 128x128: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 224x224
+  - Trying Batch Size: 1...
+False,1,1,224,half,25.272,42.569,21.068,213.219,18.942,4.689,47.381,4.700
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,224,half,25.281,86.565,21.102,248.668,22.496,8.041,94.603,10.119
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,224,half,25.845,168.458,21.517,238.586,21.480,16.761,185.578,19.924
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,224,half,26.944,334.282,22.073,325.518,30.062,24.571,361.816,41.604
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,224,half,29.838,630.912,24.137,306.931,34.430,52.058,661.849,89.736
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,224,half,41.581,770.478,41.126,65.391,2.443,488.895,777.348,29.758
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,224,half,78.590,814.457,78.119,102.157,2.366,626.167,818.855,18.990
+  - ✅ SUCCESS with Batch Size: 64.
+Image 224x224: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 320x320
+  - Trying Batch Size: 1...
+False,1,1,320,half,25.400,43.473,20.855,244.066,22.275,4.096,47.865,6.177
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,320,half,25.904,86.616,21.240,208.243,22.158,9.601,93.992,12.275
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,320,half,23.881,178.590,20.837,172.557,15.151,23.172,191.610,21.158
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,320,half,26.106,332.599,23.240,223.283,20.107,35.819,343.665,41.404
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,320,half,42.298,396.604,39.464,233.292,20.175,68.566,405.036,41.793
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,320,half,79.445,419.352,75.259,460.482,38.105,69.480,424.978,35.032
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,320,half,154.173,415.130,153.037,184.141,3.041,347.458,417.943,6.911
+  - ✅ SUCCESS with Batch Size: 64.
+Image 320x320: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 416x416
+  - Trying Batch Size: 1...
+False,1,1,416,half,24.676,43.502,21.330,198.881,17.619,5.027,46.800,4.976
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,416,half,25.347,86.357,21.451,242.630,21.963,8.241,93.069,10.639
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,416,half,28.205,162.508,22.239,394.905,36.812,10.127,179.537,18.620
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,416,half,36.841,227.730,34.430,226.252,19.170,35.349,232.097,22.619
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,416,half,66.622,245.453,64.201,248.466,18.557,64.379,249.065,20.269
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,416,half,129.346,247.318,128.862,133.595,0.476,239.438,248.250,0.907
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,416,half,249.642,256.318,248.860,251.341,0.350,254.557,257.129,0.378
+  - ✅ SUCCESS with Batch Size: 64.
+Image 416x416: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 512x512
+  - Trying Batch Size: 1...
+False,1,1,512,half,24.594,43.821,20.674,204.977,18.261,4.877,48.281,5.089
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,512,half,24.615,89.162,20.648,235.918,21.426,8.475,96.689,11.354
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,512,half,30.580,140.298,27.683,224.739,20.108,17.794,144.299,16.859
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,512,half,51.379,160.682,48.844,232.746,18.650,34.363,163.656,14.806
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,512,half,96.114,168.325,93.958,267.126,17.108,59.883,170.219,10.879
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,512,half,186.152,171.916,185.141,222.597,3.654,143.711,172.803,2.832
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,512,half,361.979,176.882,360.215,457.724,9.584,139.676,177.651,3.727
+  - ✅ SUCCESS with Batch Size: 64.
+Image 512x512: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 640x640
+  - Trying Batch Size: 1...
+False,1,1,640,half,26.044,42.232,20.652,235.948,21.676,4.237,48.334,5.718
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,640,half,25.716,85.567,22.305,231.229,21.356,8.647,89.519,11.454
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,640,half,40.362,104.084,37.441,226.442,19.719,17.660,106.729,11.105
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,640,half,74.369,109.135,71.968,207.529,14.447,38.503,111.053,8.550
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,640,half,144.851,111.074,142.533,289.125,15.218,55.328,112.224,6.258
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,640,half,281.292,113.887,279.249,396.520,11.788,80.693,114.576,3.452
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,640,half,557.335,114.839,555.335,625.609,7.045,102.234,115.237,1.308
+  - ✅ SUCCESS with Batch Size: 64.
+Image 640x640: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 896x896
+  - Trying Batch Size: 1...
+False,1,1,896,half,24.345,44.412,21.319,187.059,16.917,5.344,46.824,5.837
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,896,half,39.918,52.758,36.741,199.515,18.903,10.021,54.375,5.854
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,896,half,73.412,55.698,70.204,267.508,20.021,14.950,56.942,4.825
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,896,half,146.511,55.717,140.502,518.969,38.043,15.413,56.921,4.573
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,896,half,275.373,58.312,271.168,473.840,21.591,33.762,58.985,2.829
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,896,half,539.553,59.357,535.848,727.126,18.996,44.005,59.714,1.568
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,896,half,1070.036,59.881,1061.211,1436.978,42.406,44.536,60.306,1.833
+  - ✅ SUCCESS with Batch Size: 64.
+Image 896x896: Max successful batch size = 64
+-----------------------------------------------------------------
+==========================================================================================
+   Starting Automatic Batch Size Sweep (Precision: single)   
+==========================================================================================
+>>> Testing Image Size: 128x128
+  - Trying Batch Size: 1...
+False,1,1,128,single,24.422,44.156,20.507,209.004,18.625,4.783,48.671,4.982
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,128,single,25.385,84.871,20.693,215.279,19.143,9.288,96.468,9.747
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,128,single,25.085,176.219,20.614,240.232,22.120,16.646,193.676,23.565
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,128,single,25.291,346.671,20.944,247.101,22.385,32.367,381.266,42.544
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,128,single,25.746,664.169,22.210,192.518,16.967,83.083,719.126,77.426
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,128,single,27.823,1151.464,27.135,42.095,1.717,759.137,1177.596,51.444
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,128,single,47.382,1351.688,46.786,71.525,2.426,893.700,1366.473,46.410
+  - ✅ SUCCESS with Batch Size: 64.
+Image 128x128: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 224x224
+  - Trying Batch Size: 1...
+False,1,1,224,single,24.420,43.974,20.753,199.565,17.687,5.009,48.099,4.933
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,224,single,25.020,87.432,20.827,230.940,20.945,8.658,95.857,11.042
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,224,single,25.101,174.240,20.895,225.310,20.496,17.749,191.078,22.271
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,224,single,27.204,321.709,22.812,233.262,21.393,34.287,350.091,43.109
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,224,single,37.437,453.548,34.344,233.676,20.983,68.453,465.352,51.058
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,224,single,64.040,499.754,63.521,85.192,2.123,375.327,503.208,12.540
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,224,single,126.633,505.228,126.104,130.514,0.446,490.165,507.353,1.766
+  - ✅ SUCCESS with Batch Size: 64.
+Image 224x224: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 320x320
+  - Trying Batch Size: 1...
+False,1,1,320,single,24.993,44.084,20.791,247.876,22.617,4.033,48.011,5.527
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,320,single,25.970,84.986,20.805,244.497,22.322,8.178,95.958,12.253
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,320,single,25.352,172.228,20.960,199.831,18.579,20.010,190.488,23.718
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,320,single,36.261,234.453,33.062,223.571,20.319,35.773,241.694,27.019
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,320,single,64.487,254.374,61.690,238.068,18.616,67.191,259.105,23.025
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,320,single,124.841,256.505,123.842,172.166,4.764,185.802,258.309,7.158
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,320,single,248.227,258.341,245.270,384.543,14.180,166.209,260.890,9.880
+  - ✅ SUCCESS with Batch Size: 64.
+Image 320x320: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 416x416
+  - Trying Batch Size: 1...
+False,1,1,416,single,24.693,44.270,21.373,224.571,20.308,4.452,46.706,5.883
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,416,single,24.903,87.904,20.657,212.103,19.592,9.427,96.621,11.461
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,416,single,38.604,126.114,30.362,395.251,45.529,10.118,131.580,20.888
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,416,single,56.161,145.581,53.927,197.103,14.917,40.574,148.243,12.625
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,416,single,108.585,148.747,105.919,273.674,16.780,58.446,150.999,9.632
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,416,single,209.534,152.686,209.064,210.214,0.263,151.956,153.034,0.201
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,416,single,410.548,155.888,408.442,455.082,4.476,140.477,156.677,1.550
+  - ✅ SUCCESS with Batch Size: 64.
+Image 416x416: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 512x512
+  - Trying Batch Size: 1...
+False,1,1,512,single,24.931,43.706,20.952,232.819,20.999,4.294,47.641,5.125
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,512,single,26.213,80.960,24.230,182.042,15.954,10.984,82.416,8.482
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,512,single,44.153,94.110,41.540,206.819,17.497,19.335,96.185,9.512
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,512,single,82.310,98.755,79.568,248.841,17.516,32.141,100.457,7.793
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,512,single,158.131,101.519,156.168,284.647,12.692,56.198,102.428,4.579
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,512,single,307.509,104.115,304.892,396.720,8.958,80.560,104.941,2.371
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,512,single,603.476,106.041,601.836,605.065,0.511,105.760,106.330,0.091
+  - ✅ SUCCESS with Batch Size: 64.
+Image 512x512: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 640x640
+  - Trying Batch Size: 1...
+False,1,1,640,single,24.909,44.322,20.837,223.367,20.741,4.476,47.908,6.164
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,640,single,39.277,57.805,33.551,377.300,38.627,5.295,59.541,7.519
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,640,single,62.827,65.013,60.338,232.771,17.241,17.180,66.214,5.248
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,640,single,122.383,65.743,120.347,260.543,13.849,30.698,66.453,3.541
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,640,single,242.531,66.110,239.818,369.016,14.098,43.350,66.705,2.655
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,640,single,474.256,67.478,472.537,536.656,6.266,59.585,67.713,0.793
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+False,1,64,640,single,937.736,68.245,936.297,939.669,0.674,68.101,68.351,0.050
+  - ✅ SUCCESS with Batch Size: 64.
+Image 640x640: Max successful batch size = 64
+-----------------------------------------------------------------
+>>> Testing Image Size: 896x896
+  - Trying Batch Size: 1...
+False,1,1,896,single,34.337,30.829,31.440,195.262,17.864,5.120,31.768,3.567
+  - ✅ SUCCESS with Batch Size: 1.
+  - Trying Batch Size: 2...
+False,1,2,896,single,63.110,32.547,60.018,242.268,19.176,8.253,33.284,3.004
+  - ✅ SUCCESS with Batch Size: 2.
+  - Trying Batch Size: 4...
+False,1,4,896,single,120.209,33.567,117.593,298.158,17.863,13.413,33.996,2.055
+  - ✅ SUCCESS with Batch Size: 4.
+  - Trying Batch Size: 8...
+False,1,8,896,single,239.411,33.731,233.228,536.049,33.204,14.912,34.295,2.368
+  - ✅ SUCCESS with Batch Size: 8.
+  - Trying Batch Size: 16...
+False,1,16,896,single,463.079,34.562,460.558,538.114,9.958,29.730,34.736,0.653
+  - ✅ SUCCESS with Batch Size: 16.
+  - Trying Batch Size: 32...
+False,1,32,896,single,913.519,35.045,908.938,1121.457,22.359,28.532,35.204,0.714
+  - ✅ SUCCESS with Batch Size: 32.
+  - Trying Batch Size: 64...
+  - ❌ FAILURE (likely OOM) detected at Batch Size: 64.
+  - Stopping tests for this image size.
+Image 896x896: Max successful batch size = 32
+-----------------------------------------------------------------
+All tests completed. Final results are in logs/gpu_results.log
+
+GPU Memory Limit Sweep Results
+--------------------------------
+
+Precision: half
+Image 128x128: Max successful batch size = 64
+Image 224x224: Max successful batch size = 64
+Image 320x320: Max successful batch size = 64
+Image 416x416: Max successful batch size = 64
+Image 512x512: Max successful batch size = 64
+Image 640x640: Max successful batch size = 64
+Image 896x896: Max successful batch size = 64
+
+Precision: single
+Image 128x128: Max successful batch size = 64
+Image 224x224: Max successful batch size = 64
+Image 320x320: Max successful batch size = 64
+Image 416x416: Max successful batch size = 64
+Image 512x512: Max successful batch size = 64
+Image 640x640: Max successful batch size = 64
+Image 896x896: Max successful batch size = 32
